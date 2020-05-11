@@ -71,6 +71,27 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
+        for (int row = 0; row < table.length; row++) {
+            for (int cell = 0; cell < table.length; cell++) {
+                if (table[row][cell] == 1) {
+                    boolean r = true;
+                    boolean c = true;
+                    for (int first = 0; first < table.length; first++) {    //проверка заполненности строки
+                        if (table[row][first] != 1) {
+                            r = false;
+                            break;
+                        }
+                    }
+                    for (int second = 0; second < table.length; second++) {    //проверка заполненности столбца
+                        if (table[second][cell] != 1) {
+                            c = false;
+                            break;
+                        }
+                    }
+                    result = r || c;    //если столбец или строка заполнены, то result будет true
+                }
+            }
+        }
         return result;
     }
 
