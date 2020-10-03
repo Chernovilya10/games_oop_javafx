@@ -2,6 +2,7 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.firuges.OccupiedCellException;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -21,17 +22,31 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) throws OccupiedCellException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
+            free(steps);
             if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
         }
         return rst;
+    }
+
+    private boolean free(Cell[] steps) throws OccupiedCellException {
+        for (int i = 0; i < steps.length; i++) {
+            for (int j = 0; j < this.figures.length; j++) {
+                if (steps[i].equals(figures[j])) {
+                    throw new OccupiedCellException(
+                            String.format("This %s occupied", steps[i])
+                    );
+                }
+            }
+        }
+        return true;
     }
 
     public void clean() {
