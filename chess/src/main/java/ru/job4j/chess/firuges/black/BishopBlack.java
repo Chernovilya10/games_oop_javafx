@@ -37,42 +37,48 @@ public class BishopBlack implements Figure {
     public boolean isDiagonal(Cell source, Cell dest) {
         int size = 8;
         boolean d = false;
-        for (int i = 0; i < size; i++) {
-            if ((source.x - dest.x + source.y - dest.y) % 2 != 0) {     //сумма разницы x и y должна быть чётной
-                d = false;
+        for (int i= 0; i < size; i++) {
+            if (Math.abs(source.x - dest.x) == Math.abs(source.y - dest.y)) {
+                d = true;
                 break;
             }
-            int toX;    //перемещение по x
-            int toY;    //перемещение по y
-            if (dest.x > source.x && dest.y > source.y) {   //если конечная клетка вверх вправо
-                toX = source.x + (i + 1);
-                toY = source.y + (i + 1);
-                if (dest.x == toX && dest.y == toY) {
-                    d = true;
-                }
-            }
-            if (dest.x > source.x && dest.y < source.y) {   //если конечная клетка вниз вправо
-                toX = source.x + (i + 1);
-                toY = source.y - (i + 1);
-                if (dest.x == toX && dest.y == toY) {
-                    d = true;
-                }
-            }
-            if (dest.x < source.x && dest.y > source.y) {   //если конечная клетка вверх влево
-                toX = source.x - (i + 1);
-                toY = source.y + (i + 1);
-                if (dest.x == toX && dest.y == toY) {
-                    d = true;
-                }
-            }
-            if (dest.x < source.x && dest.y < source.y) {   //если конечная клетка вниз влево
-                toX = source.x - (i + 1);
-                toY = source.y - (i + 1);
-                if (dest.x == toX && dest.y == toY) {
-                    d = true;
-                }
-            }
         }
+//        for (int i = 0; i < size; i++) {
+//            if ((source.x - dest.x + source.y - dest.y) % 2 != 0) {     //сумма разницы x и y должна быть чётной
+//                d = false;
+//                break;
+//            }
+//            int toX;    //перемещение по x
+//            int toY;    //перемещение по y
+//            if (dest.x > source.x && dest.y > source.y) {   //если конечная клетка вверх вправо
+//                toX = source.x + (i + 1);
+//                toY = source.y + (i + 1);
+//                if (dest.x == toX && dest.y == toY) {
+//                    d = true;
+//                }
+//            }
+//            if (dest.x > source.x && dest.y < source.y) {   //если конечная клетка вниз вправо
+//                toX = source.x + (i + 1);
+//                toY = source.y - (i + 1);
+//                if (dest.x == toX && dest.y == toY) {
+//                    d = true;
+//                }
+//            }
+//            if (dest.x < source.x && dest.y > source.y) {   //если конечная клетка вверх влево
+//                toX = source.x - (i + 1);
+//                toY = source.y + (i + 1);
+//                if (dest.x == toX && dest.y == toY) {
+//                    d = true;
+//                }
+//            }
+//            if (dest.x < source.x && dest.y < source.y) {   //если конечная клетка вниз влево
+//                toX = source.x - (i + 1);
+//                toY = source.y - (i + 1);
+//                if (dest.x == toX && dest.y == toY) {
+//                    d = true;
+//                }
+//            }
+//        }
         return d;
     }
 
